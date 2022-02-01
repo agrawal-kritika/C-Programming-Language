@@ -11,6 +11,7 @@
 #define NUMBER '0'
 #define BUFSIZE 100
 #define MAXVAL 100
+#define NAME 'n'
 
 int sp = 0;
 double val[MAXVAL];
@@ -85,6 +86,9 @@ int main(void)
                 case 'c':
                         clearstack();
                         break;
+                case NAME :
+                        mathfunc(s);
+                        break;
                 default:
                         printf("error: unknown command %s\n",s);
                         break;
@@ -122,6 +126,18 @@ int getop(char s[]) {
     while ((s[0] = c = getch()) == ' ' || c == '\t')
         ;
     //s[1] = '\0';
+    if(islower(c))
+    {
+        while(islower(s[++i]=c=getch()))
+            ;
+        s[i]='\0';
+        if(c!=EOF)
+            ungetch(c);
+        if(strlen(s)>1)
+            return NAME;
+        else
+            return s[0];
+    }
     if (!isdigit(c) && c != '.')
         return c;       // not a number
     i = 0;
