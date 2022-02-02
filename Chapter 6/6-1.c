@@ -12,7 +12,7 @@ struct key
     int count;
 };
 
-struc key keytab[]= {
+struct key keytab[]= {
     "auto", 0,
     "break", 0,
     "case", 0,
@@ -118,21 +118,6 @@ int mygetword(char *word, int lim)
 				break;
 	*w ='\0';
 	return c;
-    }
-    
-    for ( ; --lim > 0; w++)
-        if (!isalnum(*w = getch())) {
-            if (!isspace(*w)){
-                ungetch(*w);
-                return (*w);
-            }
-            else {
-                ungetch(*w);
-                break;
-            }
-        }
-    *w = '\0';
-    return word[0];
 }
 
 #define BUFSIZE 100
